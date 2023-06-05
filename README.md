@@ -19,6 +19,7 @@ The required technologies to run this project is included here[requirements.txt]
 * open in local machine
 * meet the requirements
 	<pip install -r requirements.txt>
+* Follow the ins in the ipynb file to run.
 
 
 
