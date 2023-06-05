@@ -15,10 +15,10 @@ The whole project is done on [transac-nar-new.ipynb](https://github.com/Asif-dro
 The required technologies to run this project is included here[requirements.txt] (https://github.com/Asif-droid/Internship/blob/main/requirements.txt)
 
 ## How to run
-*Download the ipynb file 
-*open in local machine
-*meet the requirements
-	pip install -r requirements.txt
+* Download the ipynb file 
+* open in local machine
+* meet the requirements
+	<pip install -r requirements.txt>
 
 
 
