@@ -5,7 +5,7 @@
 * [Technologies](#technologies)
 * [Requirements](#requirements)
 * [Used models](#used-models)
-* [Setup](#setup)
+* [How to run](#how-to-run)
 
 ## General info
 This project basically cluseters data depending on the tokens it generates from preprocessing using nltk library. WordtoVec model is used for word embedding and then different clustering algo to find suitable cluster
