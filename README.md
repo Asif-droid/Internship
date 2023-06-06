@@ -30,6 +30,7 @@ The required technologies to run this project is included here at [requirements.
 * Open the test_script file.
 * Give locations of dataset and trained model 
 * Can adjust the values for Hierarchy clustering and Dbscan (defult is mx_d=1.5 for Hierarchy and eps=.55, min_samples=1 for dbscan)
+* Dbscan and Hierarchy clustering doesnot need any pretrained model to cluster the data. It generates cluster depending on the given dataset
 * Run the file
 * For more clearificaion see  [transac-nar-new.ipynb](https://github.com/Asif-droid/Internship/blob/main/transac-nar-new.ipynb)
 
