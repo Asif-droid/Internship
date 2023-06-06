@@ -290,6 +290,8 @@ def show_dendogram(dataset):
         ) 
     plt.show()
 
+    return Z
+
 def dbscan_prediction(dataset):
     test_avg_vec_list=dataset['avg_vec'].tolist()
     dbscan = DBSCAN(eps=.55, min_samples=1).fit_predict(test_avg_vec_list)
@@ -297,7 +299,7 @@ def dbscan_prediction(dataset):
     print(len(np.unique(dbscan)))
     return dataset
 
-def hierarichal_cluster(dataset,mx_d): 
+def hierarichal_cluster(dataset,mx_d,Z): 
     max_d = mx_d
     clusters = fcluster(Z, max_d, criterion='distance')
     dataset['h_c']=clusters
@@ -320,8 +322,8 @@ if __name__ == "__main__":
     dataset=avg_vectorized(dataset)
     dataset=predict(dataset,model) #gets a 'pred' column with prediction
     dataset=dbscan_prediction(dataset) #gets a 'd_c' column with cluster number
-    show_dendogram(dataset)
-    dataset=hierarichal_cluster(dataset,1.5) # 1.5 is the max distance can be tuned for other dataset based on dendogram
+    Z=show_dendogram(dataset)
+    dataset=hierarichal_cluster(dataset,1.5,Z) # 1.5 is the max distance can be tuned for other dataset based on dendogram
                                             # gets a 'h_c' column with cluster number
 
     dataset.to_csv('result.csv')
