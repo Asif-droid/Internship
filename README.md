@@ -13,7 +13,7 @@ This project basically cluseters data depending on the tokens it generates from 
 ## Technologies
 The whole project is done on [transac-nar-new.ipynb](https://github.com/Asif-droid/Internship/blob/main/transac-nar-new.ipynb)
 ## Requirements
-The required technologies to run this project is included here[requirements.txt] (https://github.com/Asif-droid/Internship/blob/main/requirements.txt)
+The required technologies to run this project is included here [requirements.txt] (https://github.com/Asif-droid/Internship/blob/main/requirements.txt)
 # Used models
 * Kmeans
 * Minibatch_Kmeans
