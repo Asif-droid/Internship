@@ -23,7 +23,7 @@ The required technologies to run this project is included here[requirements.txt]
 
 
 ## How to run
-* Download the ipynb file 
+* Download or clone the repo 
 * open in local machine
 * meet the requirements run-
 	pip install -r requirements.txt
