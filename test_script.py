@@ -324,6 +324,7 @@ if __name__ == "__main__":
     dataset=hierarichal_cluster(dataset,1.5) # 1.5 is the max distance can be tuned for other dataset based on dendogram
                                             # gets a 'h_c' column with cluster number
 
+    dataset.to_csv('result.csv')
 
 
 
