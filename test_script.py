@@ -6,6 +6,7 @@ import pickle
 import itertools
 import collections
 import matplotlib.pyplot as plt
+import sys
 import scipy
 from scipy.cluster.hierarchy import fcluster
 from scipy.cluster.hierarchy import dendrogram, linkage
@@ -225,6 +226,40 @@ def text_predict(text,model):
     df_dummy=predict(df_dummy,model)
     return df_dummy
 
+def key_words_in_clusters_dict(dataset,column):
+    minibatch_groups=dataset.groupby(column)
+    result={}
+    for cluster, group in minibatch_groups:
+        tokens = []
+        for token_list in group['tokens']:
+            tokens.extend(token_list)
+        common_tokens = pd.Series(tokens).value_counts().head(3)
+        
+        result[cluster] = list(common_tokens.index)
+#         print("Cluster:", cluster)
+#         print(common_tokens)
+#         print()
+    return result
+
+
+def store_key_words(dataset, cluster_column):
+    dictionary=key_words_in_clusters_dict(dataset,cluster_column)
+    key_word_list=list()
+    for index, row in dataset.iterrows():
+        cluster = row[cluster_column]
+        
+        if cluster in dictionary:
+            token_list = dictionary[cluster]
+#             print(cluster,token_list)
+            key_word_list.append(token_list)
+#             dataset.at[index,'key_words'] = token_list
+    
+#     return dataset
+    column_name=str(cluster_column)+'key_words'
+    dataset[column_name]=key_word_list
+#     print(len(key_word_list))
+    return dataset
+
 
 def plot(dataset,column):
     
@@ -308,24 +343,27 @@ def hierarichal_cluster(dataset,mx_d,Z):
 
 
 def get_model(file_path):
+    model_tst = None
     with open(file_path, "rb") as file:
-    model_tst = pickle.load(file)
+        model_tst = pickle.load(file)
     return model_tst
 
 
 # main function
 if __name__ == "__main__":
     # read data
-    dataset='dataset path'
-    model=get_model('model path')
+    dataset=pd.read_csv(sys.argv[1])
+    model=get_model(sys.argv[2])
     dataset=tokenize(dataset)
     dataset=avg_vectorized(dataset)
     dataset=predict(dataset,model) #gets a 'pred' column with prediction
+    # dataset=store_key_words(dataset,'pred') #gets a 'predkey_words' column with key words
     dataset=dbscan_prediction(dataset) #gets a 'd_c' column with cluster number
+    # dataset=store_key_words(dataset,'d_c') #gets a 'd_ckey_words' column with key words
     Z=show_dendogram(dataset)
     dataset=hierarichal_cluster(dataset,1.5,Z) # 1.5 is the max distance can be tuned for other dataset based on dendogram
                                             # gets a 'h_c' column with cluster number
-
+    # dataset=store_key_words(dataset,'h_c') #gets a 'h_ckey_words' column with key words
     dataset.to_csv('result.csv')
 
 
