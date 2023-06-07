@@ -40,7 +40,8 @@ from nltk.tokenize import word_tokenize
 # stop_words=set(stopwords.words('english'))
 
 ps = PorterStemmer()
-
+lematizer = WordNetLemmatizer()
+lematizer.lemmatize("words")
 
 necessary_words = ['eftn', 'ft', 'bkash', 'nogod', 'rtgs', 'pos',
                    'cib', 'paywell', 'challan', 'npsb', 'dps', 'atm', 'trf', 'sonod',
